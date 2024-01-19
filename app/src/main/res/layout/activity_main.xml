@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="delta"
+            type="com.example.libreriaproject.VinculadoViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:id="@+id/relativelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="1"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listado"
+            app:layout_constraintVertical_bias="1.0">
+
+            <EditText
+                android:id="@+id/titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Titulo"
+                android:text="@={delta.selected.titulo}" />
+
+            <EditText
+                android:id="@+id/autor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Autor"
+                android:text="@={delta.selected.autor}" />
+
+            <EditText
+                android:id="@+id/paginas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Paginas"
+                android:inputType="text"
+                android:text="@={delta.selected.paginas}" />
+
+            <EditText
+                android:id="@+id/editorial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Editorial"
+                android:text="@={delta.selected.editorial}" />
+
+            <CheckBox
+                android:id="@+id/activo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="@={delta.selected.activo}"
+                android:clickable="false"
+                android:text="Activo"
+                android:textAlignment="viewStart" />
+
+            <Button
+                android:id="@+id/actualizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#18A48E"
+                android:onClick="@{() -> delta.update()}"
+                android:text="@{delta.actionbutton}"
+                app:strokeColor="@color/black"
+                app:strokeWidth="5dp" />
+
+            <Button
+                android:id="@+id/delButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#7F1035"
+                android:onClick="@{() -> delta.remove(delta.selected)}"
+                android:text="Delete" />
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listado"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/relativelayout" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:clickable="true"
+            app:backgroundTint="@color/design_default_color_error"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/plusregular_106327"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
